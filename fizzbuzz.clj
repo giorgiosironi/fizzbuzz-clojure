@@ -1,11 +1,15 @@
 (ns fizzbuzz
   (:use clojure.test))
+(def divides (fn [x divisor]
+    (= 0 (mod x divisor))))
 (def nameNumbers (fn [x mappingsOfNumbers] 
     (if (empty? mappingsOfNumbers)
         x
-        (if (= 0 (mod x (first (first mappingsOfNumbers))))
-            (first (rest (first mappingsOfNumbers))) 
-            (nameNumbers x (rest mappingsOfNumbers))))))
+        (let [divisor (key (first mappingsOfNumbers))
+              value (val (first mappingsOfNumbers))]
+            (if (divides x divisor)
+                value
+                (nameNumbers x (rest mappingsOfNumbers)))))))
 (def fizzbuzz (fn [x]
     (nameNumbers x {3 "Fizz" 5 "Buzz"})))
 (deftest test1ShouldBeLeftUntouched
