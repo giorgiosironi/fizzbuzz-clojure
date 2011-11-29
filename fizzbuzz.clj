@@ -1,6 +1,6 @@
 (ns fizzbuzz
   (:use clojure.test))
-(def fizzbuzz (fn [x] 1))
+(def fizzbuzz (fn [x] x))
 (deftest test1ShouldBeLeftUntouched
     (is (= 1 (fizzbuzz 1))))
 (deftest test2ShouldBeLeftUntouched
