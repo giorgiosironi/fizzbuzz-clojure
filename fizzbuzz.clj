@@ -18,4 +18,6 @@
     (is (= "Buzz" (fizzbuzz 5))))
 (deftest test6isFizz
     (is (= "Fizz" (fizzbuzz 6))))
+(deftest test10isBuzz
+    (is (= "Buzz" (fizzbuzz 10))))
 (run-tests)
