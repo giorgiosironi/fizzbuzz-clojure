@@ -4,14 +4,17 @@
     (= 0 (mod x divisor))))
 (def nameNumbers (fn [x mappingsOfNumbers] 
     (if (empty? mappingsOfNumbers)
-        x
+        ""
         (let [divisor (key (first mappingsOfNumbers))
               value (val (first mappingsOfNumbers))]
             (if (divides x divisor)
-                value
+                (str value (nameNumbers x (rest mappingsOfNumbers)))
                 (nameNumbers x (rest mappingsOfNumbers)))))))
 (def fizzbuzz (fn [x]
-    (nameNumbers x {3 "Fizz" 5 "Buzz"})))
+    (let [names (nameNumbers x {3 "Fizz" 5 "Buzz"})]
+        (if (= "" names)
+            x
+            names))))
 (deftest test1ShouldBeLeftUntouched
     (is (= 1 (fizzbuzz 1))))
 (deftest test2ShouldBeLeftUntouched
