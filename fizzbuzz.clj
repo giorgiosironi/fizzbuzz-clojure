@@ -1,11 +1,11 @@
 (ns fizzbuzz
   (:use clojure.test))
+(def nameNumbers (fn [x mappingsOfNumbers] 
+    (if (find mappingsOfNumbers x)
+        (get mappingsOfNumbers x)
+        x)))
 (def fizzbuzz (fn [x]
-    (if (= x 3)
-        "Fizz" 
-        (if (= x 5)
-        "Buzz" 
-        x))))
+    (nameNumbers x {3 "Fizz" 5 "Buzz"})))
 (deftest test1ShouldBeLeftUntouched
     (is (= 1 (fizzbuzz 1))))
 (deftest test2ShouldBeLeftUntouched
